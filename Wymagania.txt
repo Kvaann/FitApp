@@ -1,0 +1,79 @@
+Temat: FitApp
+Wymagania projektu:
+min. 6 klas bazodanowych 
+(nie musi być idealnie tyle ale tak mniej więcej),
+
+min. 1 klasa łącząca (relacja wiele do wiele)
+min. 1 klasa logiki biznesowej
+
+Tabela "Users" (użytkownicy)
+
+UserID (klucz główny)
+Username
+Password
+Email
+FirstName
+LastName
+Gender
+Age
+Weight
+Height
+ActivityLevel
+
+Tabela "WorkoutPlans" (plan treningowy)
+
+PlanID (klucz główny)
+PlanName
+PlanDescription
+PlanDuration
+PlanDifficulty
+UserID (klucz obcy do tabeli "Users")
+
+Tabela "Workouts" (trening)
+
+WorkoutID (klucz główny)
+WorkoutName
+WorkoutDescription
+WorkoutDuration
+WorkoutDifficulty
+PlanID (klucz obcy do tabeli "WorkoutPlans")
+
+Tabela "Exercises" (ćwiczenia)
+
+ExerciseID (klucz główny)
+ExerciseName
+ExerciseDescription
+ExerciseType
+MuscleGroup
+
+Tabela "WorkoutExercises" (ćwiczenia w treningu)
+
+WorkoutExerciseID (klucz główny)
+ExerciseID (klucz obcy do tabeli "Exercises")
+WorkoutID (klucz obcy do tabeli "Workouts")
+Sets
+Reps
+Weight
+
+Tabela "Meals" (posiłki)
+
+MealID (klucz główny)
+MealName
+MealDescription
+MealCalories
+UserID (klucz obcy do tabeli "Users")
+
+Tabela "FoodItems" (produkty spożywcze)
+
+FoodItemID (klucz główny)
+FoodItemName
+FoodItemDescription
+FoodItemCalories
+
+Tabela "MealFoodItems" (produkty spożywcze w posiłku)
+
+MealFoodItemID (klucz główny)
+FoodItemID (klucz obcy do tabeli "FoodItems")
+MealID (klucz obcy do tabeli "Meals")
+ServingSize
+ServingsPerMeal

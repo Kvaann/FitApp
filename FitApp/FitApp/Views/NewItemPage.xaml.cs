@@ -1,5 +1,4 @@
-﻿using FitApp.Models;
-using FitApp.ViewModels;
+﻿using FitApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,12 +9,9 @@ namespace FitApp.Views
 {
     public partial class NewItemPage : ContentPage
     {
-        public Item Item { get; set; }
-
         public NewItemPage()
         {
             InitializeComponent();
-            BindingContext = new NewItemViewModel();
         }
     }
 }

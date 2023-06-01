@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace FitApp.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel
     {
         public Command LoginCommand { get; }
 

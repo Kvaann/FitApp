@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "8CmQvcDrnt7rxyw5MDA8iLxVJKW7zSNYIRg9b/juvOc=",
+  "Source": "FitApp.Api",
+  "BasePath": "_content/FitApp.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

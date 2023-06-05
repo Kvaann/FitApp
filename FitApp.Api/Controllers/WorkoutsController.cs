@@ -23,7 +23,7 @@ namespace FitApp.Api.Controllers
           {
               return NotFound();
           }
-            return await _context.Workouts.ToListAsync();
+            return await _context.Workouts.Include(item=>item.Plan).ToListAsync();
         }
 
         // GET: api/Workouts/5

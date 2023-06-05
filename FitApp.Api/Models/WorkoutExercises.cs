@@ -2,7 +2,7 @@
 
 namespace FitApp.Api.Models
 {
-    public class WorkoutExercises
+    public class WorkoutExercises : BaseModel
     {
         [Key]
         public int WorkoutExerciseID { get; set; }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FitApp.Api.Models
 {
-    public class Meals
+    public class Meals : BaseModel
     {
         [Key]
         public int MealID { get; set; }

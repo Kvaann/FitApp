@@ -2,7 +2,7 @@
 
 namespace FitApp.Api.Models
 {
-    public class FoodItems
+    public class FoodItems : BaseModel
     {
         [Key]
         public int FoodItemID { get; set; }

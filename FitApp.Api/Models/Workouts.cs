@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FitApp.Api.Models
 {
-    public class Workouts
+    public class Workouts : BaseModel
     {
         [Key]
         public int WorkoutID { get; set; }

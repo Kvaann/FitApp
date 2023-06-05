@@ -1,7 +1,6 @@
 ﻿using FitApp.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 namespace FitApp.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -23,7 +22,10 @@ namespace FitApp.Api.Controllers
           {
               return NotFound();
           }
-            return await _context.MealFoodItems.ToListAsync();
+            return await _context.MealFoodItems
+                .Include(item=>item.Meal)
+                .Include(item=>item.FoodItem)
+                .ToListAsync();
         }
 
         // GET: api/MealFoodItems/5

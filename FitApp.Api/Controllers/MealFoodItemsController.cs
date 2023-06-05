@@ -51,7 +51,7 @@ namespace FitApp.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMealFoodItems(int id, MealFoodItems mealFoodItems)
         {
-            if (id != mealFoodItems.MyProperty)
+            if (id != mealFoodItems.MealFoodItemId)
             {
                 return BadRequest();
             }
@@ -89,7 +89,7 @@ namespace FitApp.Api.Controllers
             _context.MealFoodItems.Add(mealFoodItems);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMealFoodItems", new { id = mealFoodItems.MyProperty }, mealFoodItems);
+            return CreatedAtAction("GetMealFoodItems", new { id = mealFoodItems.MealFoodItemId }, mealFoodItems);
         }
 
         // DELETE: api/MealFoodItems/5
@@ -114,7 +114,7 @@ namespace FitApp.Api.Controllers
 
         private bool MealFoodItemsExists(int id)
         {
-            return (_context.MealFoodItems?.Any(e => e.MyProperty == id)).GetValueOrDefault();
+            return (_context.MealFoodItems?.Any(e => e.MealFoodItemId == id)).GetValueOrDefault();
         }
     }
 }

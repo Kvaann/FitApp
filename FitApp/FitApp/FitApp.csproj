@@ -29,4 +29,15 @@
       <SourceUri>https://localhost:7023/swagger/v1/swagger.json</SourceUri>
     </OpenApiReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\ExerciseViewModel\" />
+    <Folder Include="ViewModels\FoodItemsViewModel\" />
+    <Folder Include="ViewModels\MealFoodItemsViewModel\" />
+    <Folder Include="ViewModels\MealsViewModel\" />
+    <Folder Include="ViewModels\WorkoutsViewModel\" />
+    <Folder Include="ViewModels\WorkoutPlansViewModel\" />
+    <Folder Include="ViewModels\WorkoutExercisesViewModel\" />
+    <Folder Include="ViewModels\UsersViewModel\" />
+  </ItemGroup>
 </Project>

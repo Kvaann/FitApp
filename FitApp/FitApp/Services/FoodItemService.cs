@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace FitApp.Services
 {
-    public class FoodItemsService : AListDataStore<FoodItems>
+    public class FoodItemService : AListDataStore<FoodItems>
     {
-        public FoodItemsService() :
+        public FoodItemService() :
             base()
         {
         }

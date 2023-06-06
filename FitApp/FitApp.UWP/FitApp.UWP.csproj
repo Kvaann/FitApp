@@ -104,6 +104,12 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Styles\image\fitness.jpg" />
+    <Content Include="Assets\Styles\image\food.png" />
+    <Content Include="Assets\Styles\image\gym.png" />
+    <Content Include="Assets\Styles\image\meals.png" />
+    <Content Include="Assets\Styles\image\user.png" />
+    <Content Include="Assets\Styles\style.css" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />

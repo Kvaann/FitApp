@@ -6,7 +6,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Remove="style.css" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Include="obj\swaggerClient.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Views\style.css" />
 	</ItemGroup>
 
   <ItemGroup>
@@ -34,10 +42,21 @@
     <Folder Include="ViewModels\ExerciseViewModel\" />
     <Folder Include="ViewModels\FoodItemsViewModel\" />
     <Folder Include="ViewModels\MealFoodItemsViewModel\" />
-    <Folder Include="ViewModels\MealsViewModel\" />
     <Folder Include="ViewModels\WorkoutsViewModel\" />
     <Folder Include="ViewModels\WorkoutPlansViewModel\" />
     <Folder Include="ViewModels\WorkoutExercisesViewModel\" />
     <Folder Include="ViewModels\UsersViewModel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\MealsPage.xaml.cs">
+      <DependentUpon>MealsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\MealsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

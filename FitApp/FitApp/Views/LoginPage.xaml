@@ -5,10 +5,82 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FitApp.Views.LoginPage"
+             BackgroundImageSource="Assets/Styles/image/fitness.jpg"
              Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+            <Grid RowDefinitions="100,100" ColumnDefinitions="*,*,*,*">
+                <StackLayout Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+                    <Label Text="Sign in"
+                           FontSize="25"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"/>
+
+                    <Frame OutlineColor="White"
+                           BackgroundColor="Transparent"
+                           Margin="15"
+                           Padding="25, 0,25,0"
+                           HeightRequest="60"
+                           CornerRadius="50">
+                        
+                        <Frame OutlineColor="White"
+                            BackgroundColor="Transparent"
+                            Margin="15"
+                            Padding="25, 0,25,0"
+                            HeightRequest="60"
+                            CornerRadius="50">
+
+                            <Entry
+                            TextColor="White"
+                            Background="Transparent"
+                            FontSize="18"
+                            Placeholder="Username"
+                            PlaceholderColor="White"/>
+                        </Frame>
+                    </Frame>
+
+                    <Frame
+                           OutlineColor="White"
+                           BackgroundColor="Transparent"
+                           Margin="15"
+                           Padding="25, 0,25,0"
+                           HeightRequest="60"
+                           CornerRadius="50">
+                        <Frame OutlineColor="White"
+                        BackgroundColor="Transparent"
+                        Margin="15"
+                        Padding="25, 0,25,0"
+                        HeightRequest="60"
+                        CornerRadius="50">
+
+                            <Entry
+                            TextColor="White"
+                            Background="Transparent"
+                                Opacity="50"
+                            FontSize="18"
+                            Placeholder="Password"
+                            PlaceholderColor="White"
+                            IsPassword="True"
+                            x:Name="EntryPassword"/>
+                        </Frame>
+                    </Frame>
+                    <RelativeLayout Padding="25">
+                        <Button 
+                            x:Name="ForgotPasswordButton"
+                            Text="Forgot Password?"
+                            TextColor="White"
+                            FontSize="18"
+                            BackgroundColor ="Transparent"
+                            RelativeLayout.XConstraint="205"
+                            RelativeLayout.YConstraint="-8"
+                            TextTransform="None"/>
+                    </RelativeLayout>
+                    <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+                </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

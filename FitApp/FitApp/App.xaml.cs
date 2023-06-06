@@ -12,7 +12,7 @@ namespace FitApp
         public App()
         {
             InitializeComponent();
-
+            DependencyService.Register<ExerciseService>();
             MainPage = new AppShell();
         }
 

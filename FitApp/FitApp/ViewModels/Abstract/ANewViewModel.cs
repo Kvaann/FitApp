@@ -1,4 +1,5 @@
 ﻿using FitApp.Services.Abstract;
+using System;
 using Xamarin.Forms;
 
 namespace FitApp.ViewModels.Abstract
@@ -8,10 +9,17 @@ namespace FitApp.ViewModels.Abstract
         public IDataStore<T> DataStore => DependencyService.Get<IDataStore<T>>();
         public ANewViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
-            CancelCommand = new Command(OnCancel);
-            this.PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
+            try
+            {
+                SaveCommand = new Command(OnSave, ValidateSave);
+                CancelCommand = new Command(OnCancel);
+                this.PropertyChanged +=
+                    (_, __) => SaveCommand.ChangeCanExecute();
+            }
+            catch (Exception e)
+            { 
+
+            }
         }
         public abstract bool ValidateSave();
         public Command SaveCommand { get; }

@@ -81,6 +81,7 @@
     -->
     <FlyoutItem Title="Exercises" Icon="icon_feed.png">
         <ShellContent Route="ExercisePage" ContentTemplate="{DataTemplate localExercise:ExercisePage}" />
+        
     </FlyoutItem>
     <FlyoutItem Title="About" Icon="icon_about.png">
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />

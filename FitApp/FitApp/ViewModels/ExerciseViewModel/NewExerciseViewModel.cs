@@ -65,7 +65,7 @@ namespace FitApp.ViewModels.ExerciseViewModel
 
         public override bool ValidateSave()
         {
-            throw new NotImplementedException();
+            return !String.IsNullOrEmpty(exerciseName);
         }
 
         public override Exercises SetItem()

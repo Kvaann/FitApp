@@ -1,5 +1,4 @@
-﻿using FitApp.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FitApp.Api.Models
 {

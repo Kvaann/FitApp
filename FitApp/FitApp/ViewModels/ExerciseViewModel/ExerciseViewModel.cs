@@ -14,7 +14,7 @@ namespace FitApp.ViewModels.ExerciseViewModel
 
         public override async void GoToAddPageAsync()
         {
-            await Shell.Current.GoToAsync(nameof(ExercisePage));
+            await Shell.Current.GoToAsync(nameof(NewExercisePage));
         }
 
         public override async void OnItemSelected(Exercises item)

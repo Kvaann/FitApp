@@ -1,4 +1,5 @@
-﻿using FitApp.Services;
+﻿using FitApp.Helpers;
+using FitApp.Services;
 using FitApp.ViewModels.Abstract;
 using FitApp.Views.ExerciseView;
 using FitAppApi;
@@ -18,12 +19,12 @@ namespace FitApp.ViewModels.ExerciseViewModel
         {
             Items = new ObservableCollection<Exercises>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            AddSinCommand = new Command(async () => await Shell.Current.GoToAsync($"{nameof(NewExercisePage)}?{nameof(NewExerciseViewModel.ExerciseID)}={ExerciseID}"));
+            AddSinCommand = new Command(async () => await Shell.Current.GoToAsync($"{nameof(NewExercisePage)}?{nameof(NewExerciseViewModel.ExerciseID)}={Id}"));
         }
 
         #region Fields
 
-        private int exerciseID;
+        private int id;
         private string exerciseName;
         private string exerciseDescription;
         private string exerciseType;
@@ -33,10 +34,10 @@ namespace FitApp.ViewModels.ExerciseViewModel
 
         #region Properties
 
-        public int ExerciseID
+        public int Id
         {
-            get => exerciseID;
-            set => SetProperty(ref exerciseID, value);
+            get => id;
+            set => SetProperty(ref id, value);
         }
 
         public string ExerciseName
@@ -66,16 +67,19 @@ namespace FitApp.ViewModels.ExerciseViewModel
         public ObservableCollection<Exercises> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddSinCommand { get; }
+        public Command Load { get; }
 
         #endregion Properties
 
-        public override void LoadProperties(Exercises item)
+        public override async void LoadProperties(Exercises item)
         {
             ExerciseName = item.ExerciseName;
             ExerciseDescription = item.ExerciseDescription;
             ExerciseType = item.ExerciseType;
             MuscleGroup = item.MuscleGroup;
             Title = "Exercise Details";
+            this.CopyProperties(item);
+            await ExecuteLoadItemsCommand();
         }
 
         private async Task ExecuteLoadItemsCommand()
@@ -85,7 +89,7 @@ namespace FitApp.ViewModels.ExerciseViewModel
             {
                 Items.Clear();
                 var dataStore = DependencyService.Get<ExerciseService>();
-                var items = (await dataStore.GetItemsAsync(true)).Where(item => item.ExerciseID == ExerciseID);
+                var items = (await dataStore.GetItemsAsync(true)).Where(item => item.ExerciseID == Id);
                 foreach (var item in items)
                 {
                     Items.Add(item);

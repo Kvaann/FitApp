@@ -6,21 +6,19 @@
              xmlns:exerciseviewmodel="clr-namespace:FitApp.ViewModels.ExerciseViewModel" 
              x:DataType="exerciseviewmodel:ExerciseDetailsViewModel"
              Title="{Binding Title}">
-    <RefreshView Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <StackLayout Spacing="20" Padding="15">
-            <Label Text="Exercise Name:" FontSize="Medium" />
-            <Label Text="{Binding ExerciseName, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Description" FontSize="Medium" />
-            <Entry Text="{Binding ExerciseDescription, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Exercise Type" FontSize="Medium" />
-            <Editor Text="{Binding ExerciseType, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
-            <Label Text="Muscle Group" FontSize="Medium" />
-            <Editor Text="{Binding MuscleGroup, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Delete" Command="{Binding DeleteCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Edit" Command="{Binding AddSinCommand}" HorizontalOptions="FillAndExpand"></Button>
-            </StackLayout>
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Exercise Name:" FontSize="Medium" />
+        <Label Text="{Binding ExerciseName, Mode=TwoWay}" FontSize="Medium" />
+        <Label Text="Description" FontSize="Medium" />
+        <Label Text="{Binding ExerciseDescription, Mode=TwoWay}" FontSize="Medium" />
+        <Label Text="Exercise Type" FontSize="Medium" />
+        <Label Text="{Binding ExerciseType, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+        <Label Text="Muscle Group" FontSize="Medium" />
+        <Label Text="{Binding MuscleGroup, Mode=TwoWay}"  FontSize="Medium" Margin="0" />
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Delete" Command="{Binding DeleteCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Edit" Command="{Binding AddSinCommand}" HorizontalOptions="FillAndExpand"></Button>
         </StackLayout>
-    </RefreshView>
+    </StackLayout>
 </ContentPage>

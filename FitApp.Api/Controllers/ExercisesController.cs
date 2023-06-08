@@ -19,10 +19,10 @@ namespace FitApp.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Exercises>>> GetExercises()
         {
-          if (_context.Exercises == null)
-          {
-              return NotFound();
-          }
+            if (_context.Exercises == null)
+            {
+                return NotFound();
+            }
             return await _context.Exercises.ToListAsync();
         }
 
@@ -30,10 +30,10 @@ namespace FitApp.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Exercises>> GetExercises(int id)
         {
-          if (_context.Exercises == null)
-          {
-              return NotFound();
-          }
+            if (_context.Exercises == null)
+            {
+                return NotFound();
+            }
             var exercises = await _context.Exercises.FindAsync(id);
 
             if (exercises == null)

@@ -1,11 +1,7 @@
 ﻿using FitApp.ViewModels.Abstract;
 using FitApp.Views.ExerciseView;
 using FitAppApi;
-using System.Diagnostics;
-using System;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-using FitApp.Services.Abstract;
 
 namespace FitApp.ViewModels.ExerciseViewModel
 {

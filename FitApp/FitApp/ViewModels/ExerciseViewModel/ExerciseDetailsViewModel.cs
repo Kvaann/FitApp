@@ -1,6 +1,13 @@
-﻿using FitApp.ViewModels.Abstract;
+﻿using FitApp.Services;
+using FitApp.ViewModels.Abstract;
+using FitApp.Views.ExerciseView;
 using FitAppApi;
 using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace FitApp.ViewModels.ExerciseViewModel
 {
@@ -9,44 +16,89 @@ namespace FitApp.ViewModels.ExerciseViewModel
         public ExerciseDetailsViewModel()
             : base()
         {
+            Items = new ObservableCollection<Exercises>();
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            AddSinCommand = new Command(async () => await Shell.Current.GoToAsync($"{nameof(NewExercisePage)}?{nameof(NewExerciseViewModel.ExerciseID)}={ExerciseID}"));
         }
 
         #region Fields
-        private string name;
-        private string description;
-        private DateTime createdDate;
-        private DateTime modifiedDate;
+
+        private int exerciseID;
+        private string exerciseName;
+        private string exerciseDescription;
+        private string exerciseType;
+        private string muscleGroup;
+
         #endregion Fields
 
         #region Properties
-        public string Name
+
+        public int ExerciseID
         {
-            get => name;
-            set => SetProperty(ref name, value);
+            get => exerciseID;
+            set => SetProperty(ref exerciseID, value);
         }
-        public string Description
+
+        public string ExerciseName
         {
-            get => description;
-            set => SetProperty(ref description, value);
+            get => exerciseName;
+            set => SetProperty(ref exerciseName, value);
         }
-        public DateTime CreatedDate
+
+        public string ExerciseDescription
         {
-            get => createdDate;
-            set => SetProperty(ref createdDate, value);
+            get => exerciseDescription;
+            set => SetProperty(ref exerciseDescription, value);
         }
-        public DateTime ModifiedDate
+
+        public string ExerciseType
         {
-            get => modifiedDate;
-            set => SetProperty(ref modifiedDate, value);
+            get => exerciseType;
+            set => SetProperty(ref exerciseType, value);
         }
+
+        public string MuscleGroup
+        {
+            get => muscleGroup;
+            set => SetProperty(ref muscleGroup, value);
+        }
+
+        public ObservableCollection<Exercises> Items { get; }
+        public Command LoadItemsCommand { get; }
+        public Command AddSinCommand { get; }
+
         #endregion Properties
 
         public override void LoadProperties(Exercises item)
         {
-            Name = item.ExerciseName;
-            Description = item.ExerciseDescription;
-            CreatedDate = item.CreationDate.DateTime;
-            ModifiedDate = item.ModificationDate.DateTime;
+            ExerciseName = item.ExerciseName;
+            ExerciseDescription = item.ExerciseDescription;
+            ExerciseType = item.ExerciseType;
+            MuscleGroup = item.MuscleGroup;
+            Title = "Exercise Details";
+        }
+
+        private async Task ExecuteLoadItemsCommand()
+        {
+            IsBusy = true;
+            try
+            {
+                Items.Clear();
+                var dataStore = DependencyService.Get<ExerciseService>();
+                var items = (await dataStore.GetItemsAsync(true)).Where(item => item.ExerciseID == ExerciseID);
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

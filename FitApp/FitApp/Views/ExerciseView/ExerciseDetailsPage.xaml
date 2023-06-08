@@ -1,12 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FitApp.Views.ExerciseView.ExerciseDetailsPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="FitApp.Views.ExerciseView.ExerciseDetailsPage"
+             xmlns:model="clr-namespace:FitAppApi" 
+             Title="{Binding Title}">
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Exercise Name:" FontSize="Medium" />
+        <Label Text="{Binding ExerciseName}" FontSize="Small"/>
+        <Label Text="Exercise Description:" FontSize="Medium" />
+        <Label Text="{Binding ExerciseDescription}" FontSize="Small"/>
+        <Label Text="Exercise Type:" FontSize="Medium" />
+        <Label Text="{Binding ExerciseType}" FontSize="Small"/>
+        <Label Text="Muscle Group:" FontSize="Medium" />
+        <Label Text="{Binding MuscleGroup}" FontSize="Small"/>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Delete" Command="{Binding DeleteCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="AddSinCommand" Command="{Binding AddSinCommand}" HorizontalOptions="FillAndExpand"></Button>
         </StackLayout>
-    </ContentPage.Content>
+    </StackLayout>
 </ContentPage>

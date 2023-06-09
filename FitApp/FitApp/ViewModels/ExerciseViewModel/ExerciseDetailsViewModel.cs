@@ -19,7 +19,7 @@ namespace FitApp.ViewModels.ExerciseViewModel
         {
             Items = new ObservableCollection<Exercises>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            AddSinCommand = new Command(async () => await Shell.Current.GoToAsync($"{nameof(NewExercisePage)}?{nameof(NewExerciseViewModel.ExerciseID)}={Id}"));
+            AddSinCommand = new Command(async () => await OnEditSelected(ItemId));
         }
 
         #region Fields
@@ -67,7 +67,6 @@ namespace FitApp.ViewModels.ExerciseViewModel
         public ObservableCollection<Exercises> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddSinCommand { get; }
-        public Command Load { get; }
 
         #endregion Properties
 
@@ -103,6 +102,31 @@ namespace FitApp.ViewModels.ExerciseViewModel
             {
                 IsBusy = false;
             }
+        }
+
+        public async Task OnEditSelected(int id)
+        {
+            var dataStore = DependencyService.Get<ExerciseService>();
+            var item = (await dataStore.GetItemsAsync(true)).Where(item2 => item2.ExerciseID == id).First();
+            LoadProperties(item);
+            if (item == null)
+            {
+                return;
+            }
+            await Shell.Current.GoToAsync($"{nameof(ExerciseEditPage)}?{nameof(ExerciseDetailsViewModel.ItemId)}={item.ExerciseID}");
+        }
+
+        public override async void OnUpdateAsync()
+        {
+            var dataStore = DependencyService.Get<ExerciseService>();
+            var Item = (await dataStore.GetItemsAsync(true)).Where(item => item.ExerciseID == ItemId).First();
+            Item.ModificationDate = DateTime.Now;
+            Item.ExerciseDescription = this.ExerciseDescription;
+            Item.ExerciseName = this.ExerciseName;
+            Item.ExerciseType = this.ExerciseType;
+            Item.MuscleGroup = this.MuscleGroup;
+            await DataStore.UpdateItemAsync(Item);
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

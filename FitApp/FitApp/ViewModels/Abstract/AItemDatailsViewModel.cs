@@ -13,10 +13,12 @@ namespace FitApp.ViewModels.Abstract
         {
             CancelCommand = new Command(OnCancel);
             DeleteCommand = new Command(OnDelete);
+            UpdateCommand = new Command(OnUpdateAsync);
         }
 
         public Command DeleteCommand { get; }
         public Command CancelCommand { get; }
+        public Command UpdateCommand { get; }
         public abstract void LoadProperties(T item);
         private async void OnDelete()
         {
@@ -30,6 +32,8 @@ namespace FitApp.ViewModels.Abstract
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
+
+        public abstract void OnUpdateAsync();
 
         private int itemId;
         public int ItemId

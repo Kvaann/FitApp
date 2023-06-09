@@ -2,12 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FitApp.Views.ExerciseView.ExerciseEditPage"
+             xmlns:exerciseviewmodel="clr-namespace:FitApp.ViewModels.ExerciseViewModel" 
+             x:DataType="exerciseviewmodel:ExerciseDetailsViewModel"
              Shell.PresentationMode="ModalAnimated"
              Title="New Exercise" >
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
             <Label Text="Exercise Name" FontSize="Medium" />
-            <Label Text="{Binding ExerciseName, Mode=TwoWay}" FontSize="Medium" />
+            <Entry Text="{Binding ExerciseName, Mode=TwoWay}" FontSize="Medium" />
             <Label Text="Description" FontSize="Medium" />
             <Entry Text="{Binding ExerciseDescription, Mode=TwoWay}" FontSize="Medium" />
             <Label Text="Exercise Type" FontSize="Medium" />
@@ -15,7 +17,7 @@
             <Label Text="Muscle Group" FontSize="Medium" />
             <Editor Text="{Binding MuscleGroup, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <StackLayout Orientation="Horizontal">
-                <Button Text="Save" IsEnabled="true" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" IsEnabled="true" Command="{Binding UpdateCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
         </StackLayout>

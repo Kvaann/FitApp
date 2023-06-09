@@ -1,12 +1,28 @@
-﻿using FitApp.ViewModels.Abstract;
+﻿using FitApp.Helpers;
+using FitApp.Services;
+using FitApp.ViewModels.Abstract;
+using FitApp.Views.ExerciseView;
 using FitAppApi;
+using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace FitApp.ViewModels.ExerciseViewModel
 {
     public class ExeriseEditViewModel : AItemDatailsViewModel<Exercises>
     {
+        #region Constructor
+
+        public ExeriseEditViewModel()
+        {
+            
+        }
+
+        #endregion
+
         #region Fields
 
         private int id;
@@ -58,8 +74,51 @@ namespace FitApp.ViewModels.ExerciseViewModel
 
         public override void LoadProperties(Exercises item)
         {
-            throw new System.NotImplementedException();
+            ExerciseName = item.ExerciseName;
+            ExerciseDescription = item.ExerciseDescription;
+            ExerciseType = item.ExerciseType;
+            MuscleGroup = item.MuscleGroup;
+            Title = "Exercise Details";
+            this.CopyProperties(item);
         }
 
+        private async Task ExecuteLoadItemsCommand()
+        {
+            IsBusy = true;
+            try
+            {
+                Items.Clear();
+                var dataStore = DependencyService.Get<ExerciseService>();
+                var items = (await dataStore.GetItemsAsync(true)).Where(item => item.ExerciseID == Id);
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        public async Task OnEditSelected(int id)
+        {
+            var item = DataStore.GetItemAsync(id);
+            LoadProperties(item.Result);
+            if (item == null)
+            {
+                return;
+            }
+            await Shell.Current.GoToAsync($"{nameof(ExerciseEditPage)}?{nameof(ExerciseDetailsViewModel.ItemId)}={item.Id}");
+        }
+
+        public override void OnUpdateAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

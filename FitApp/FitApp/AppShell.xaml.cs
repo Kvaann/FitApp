@@ -14,6 +14,7 @@ namespace FitApp
             InitializeComponent();
             Routing.RegisterRoute(nameof(NewExercisePage), typeof(NewExercisePage));
             Routing.RegisterRoute(nameof(ExerciseDetailsPage), typeof(ExerciseDetailsPage));
+            Routing.RegisterRoute(nameof(ExerciseEditPage), typeof(ExerciseEditPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

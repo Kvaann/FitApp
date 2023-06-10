@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using FitApp.ViewModels.FoodItemsViewModel;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace FitApp.Views.FoodItemView
@@ -9,7 +10,7 @@ namespace FitApp.Views.FoodItemView
         public FoodItemDetailsPage()
         {
             InitializeComponent();
-            BindingContext = new FoodItemDetailsPage();
+            BindingContext = new FoodItemsDetailsViewModel();
         }
     }
 }

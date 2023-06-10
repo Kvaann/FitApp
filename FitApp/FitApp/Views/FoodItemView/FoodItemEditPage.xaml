@@ -4,14 +4,12 @@
              x:Class="FitApp.Views.FoodItemView.FoodItemEditPage">
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="Exercise Name" FontSize="Medium" />
-            <Entry Text="{Binding ExerciseName, Mode=TwoWay}" FontSize="Medium" />
+            <Label Text="Food Name" FontSize="Medium" />
+            <Entry Text="{Binding FoodItemName, Mode=TwoWay}" FontSize="Medium" />
             <Label Text="Description" FontSize="Medium" />
-            <Entry Text="{Binding ExerciseDescription, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Exercise Type" FontSize="Medium" />
-            <Editor Text="{Binding ExerciseType, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
-            <Label Text="Muscle Group" FontSize="Medium" />
-            <Editor Text="{Binding MuscleGroup, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Entry Text="{Binding FoodItemDescription, Mode=TwoWay}" FontSize="Medium" />
+            <Label Text="Food Calories" FontSize="Medium" />
+            <Editor Text="{Binding FoodItemCalories, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <StackLayout Orientation="Horizontal">
                 <Button Text="Save" IsEnabled="true" Command="{Binding UpdateCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>

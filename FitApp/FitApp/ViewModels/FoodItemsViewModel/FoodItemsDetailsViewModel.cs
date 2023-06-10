@@ -1,8 +1,6 @@
 ﻿using FitApp.Helpers;
 using FitApp.Services;
 using FitApp.ViewModels.Abstract;
-using FitApp.ViewModels.ExerciseViewModel;
-using FitApp.Views.ExerciseView;
 using FitApp.Views.FoodItemView;
 using FitAppApi;
 using System;

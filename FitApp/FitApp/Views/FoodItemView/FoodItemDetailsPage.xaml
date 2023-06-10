@@ -2,16 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FitApp.Views.FoodItemView.FoodItemDetailsPage"
-             xmlns:exerciseviewmodel="clr-namespace:FitApp.ViewModels.FoodItemsViewModel" 
-             x:DataType="exerciseviewmodel:FoodItemsDetailsViewModel"
+             xmlns:model="clr-namespace:FitAppApi" 
+             xmlns:fooditemviewmodel="clr-namespace:FitApp.ViewModels.FoodItemsViewModel" 
+             x:DataType="fooditemviewmodel:FoodItemsDetailsViewModel"
              Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Exercise Name:" FontSize="Medium" />
+            <Label Text="Food Name:" FontSize="Medium" />
             <Label Text="{Binding FoodItemName, Mode=TwoWay}" FontSize="Medium" />
             <Label Text="Description" FontSize="Medium" />
             <Label Text="{Binding FoodItemDescription, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Exercise Type" FontSize="Medium" />
+            <Label Text="Food Calories" FontSize="Medium" />
             <Label Text="{Binding FoodItemCalories, Mode=TwoWay}" FontSize="Medium" Margin="0" />
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>

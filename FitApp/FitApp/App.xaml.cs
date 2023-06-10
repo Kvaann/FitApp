@@ -13,6 +13,13 @@ namespace FitApp
         {
             InitializeComponent();
             DependencyService.Register<ExerciseService>();
+            DependencyService.Register<FoodItemService>();
+            DependencyService.Register<MealFoodItemService>();
+            DependencyService.Register<MealsModelService>();
+            DependencyService.Register<UserModelService>();
+            DependencyService.Register<WorkoutExercisesService>();
+            DependencyService.Register<WorkoutPlansService>();
+            DependencyService.Register<WorkoutService>();
             MainPage = new AppShell();
         }
 

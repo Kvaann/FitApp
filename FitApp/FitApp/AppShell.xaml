@@ -3,6 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:FitApp.Views"
        xmlns:localExercise="clr-namespace:FitApp.Views.ExerciseView"
+       xmlns:localFoodItem="clr-namespace:FitApp.Views.FoodItemView"
        Title="FitApp"
        x:Class="FitApp.AppShell">
 
@@ -81,8 +82,12 @@
     -->
     <FlyoutItem Title="Exercises" Icon="icon_feed.png">
         <ShellContent Route="ExercisePage" ContentTemplate="{DataTemplate localExercise:ExercisePage}" />
-        
     </FlyoutItem>
+
+    <FlyoutItem Title="Exercises" Icon="icon_feed.png">
+        <ShellContent Route="FoodItemPage" ContentTemplate="{DataTemplate localFoodItem:FoodItemPage}" />
+    </FlyoutItem>
+
     <FlyoutItem Title="About" Icon="icon_about.png">
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>

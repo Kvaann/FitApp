@@ -18,14 +18,22 @@ namespace FitApp.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MealFoodItems>>> GetMealFoodItems()
         {
-          if (_context.MealFoodItems == null)
-          {
-              return NotFound();
-          }
-            return await _context.MealFoodItems
-                .Include(item=>item.Meal)
-                .Include(item=>item.FoodItem)
-                .ToListAsync();
+            try
+            {
+                if (_context.MealFoodItems == null)
+                {
+                    return NotFound();
+                }
+                var model = await _context.MealFoodItems
+                    .Include(item => item.Meal)
+                    .Include(item => item.FoodItem)
+                    .ToListAsync();
+                return model;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         // GET: api/MealFoodItems/5

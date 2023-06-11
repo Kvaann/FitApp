@@ -50,7 +50,7 @@ namespace FitApp.ViewModels.Abstract
         }
         public void OnAppearing()
         {
-            IsBusy = true;
+            //IsBusy = true;
             SelectedItem = default(T);
         }
 

@@ -1,5 +1,7 @@
 using FitApp.Api.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace FitApp.Api;
 

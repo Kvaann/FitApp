@@ -4,6 +4,7 @@ using FitApp.ViewModels.Abstract;
 using FitApp.Views.MealFoodItemView;
 using FitAppApi;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -19,6 +20,10 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         private int mealFoodItemId;
         private string selectedFoodItemName;
         private string selectedMealName;
+        private FoodItems selectedFoodItem;
+        private List<FoodItems> foodItems;
+        private Meals selectedMeal;
+        private List<Meals> meals;
         private string servingSize;
         private string servingsPerMeal;
 
@@ -32,17 +37,42 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
             set => SetProperty(ref mealFoodItemId, value);
         }
 
-        public string SelectedFoodItemName
+        public FoodItems SelectedFoodItem
         {
-            get => selectedFoodItemName;
-            set => SetProperty(ref selectedFoodItemName, value);
+            get => selectedFoodItem;
+            set => SetProperty(ref selectedFoodItem, value);
+        }
+        public List<FoodItems> FoodItems
+        {
+            get
+            {
+                return foodItems;
+            }
+        }
+        public Meals SelectedMeal
+        {
+            get => selectedMeal;
+            set => SetProperty(ref selectedMeal, value);
+        }
+        public List<Meals> Meals
+        {
+            get
+            {
+                return meals;
+            }
         }
 
-        public string SelectedMealName
-        {
-            get => selectedMealName;
-            set => SetProperty(ref selectedMealName, value);
-        }
+        //public string SelectedFoodItemName
+        //{
+        //    get => selectedFoodItemName;
+        //    set => SetProperty(ref selectedFoodItemName, value);
+        //}
+
+        //public string SelectedMealName
+        //{
+        //    get => selectedMealName;
+        //    set => SetProperty(ref selectedMealName, value);
+        //}
 
         public string ServingSize
         {
@@ -62,20 +92,22 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
 
         #endregion
 
+        #region Constructor
+
         public MealFoodItemsDetailsViewModel()
-            :base()
+            : base()
         {
             Items = new ObservableCollection<MealFoodItems>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             AddSinCommand = new Command(async () => await OnEditSelected(ItemId));
         }
 
-        #region Methods
+        #endregion
 
+        #region Methods
 
         public override async void LoadProperties(MealFoodItems item)
         {
-
             this.CopyProperties(item);
             await ExecuteLoadItemsCommand();
         }

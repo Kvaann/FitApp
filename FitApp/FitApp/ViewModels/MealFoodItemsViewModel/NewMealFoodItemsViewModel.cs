@@ -11,8 +11,10 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         #region Fields
 
         //private int mealFoodItemId;
+        private string foodItemName;
         private FoodItems selectedFoodItem;
         private List<FoodItems> foodItems;
+        private string mealName;
         private Meals selectedMeal;
         private List<Meals> meals;
         private string servingSize;
@@ -69,8 +71,8 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         public NewMealFoodItemsViewModel()
             : base()
         {
-            SelectedFoodItem = new FoodItems();
-            SelectedMeal = new Meals();
+            selectedFoodItem = new FoodItems();
+            selectedMeal = new Meals();
 
             var foodItemDataStorage = new FoodItemService();
             foodItemDataStorage.RefreshListFromService();

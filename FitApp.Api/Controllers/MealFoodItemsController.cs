@@ -26,6 +26,7 @@ namespace FitApp.Api.Controllers
                 }
                 var model = await _context.MealFoodItems
                     .Include(item => item.Meal)
+                    .ThenInclude(item => item.User)
                     .Include(item => item.FoodItem)
                     .ToListAsync();
                 return model;

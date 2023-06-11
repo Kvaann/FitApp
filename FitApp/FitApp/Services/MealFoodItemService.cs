@@ -35,7 +35,7 @@ namespace FitApp.Services
 
         public override async Task RefreshListFromService()
         {
-            items = _service.MealFoodItemsAllAsync().Result.ToList();
+            items = (await _service.MealFoodItemsAllAsync()).ToList();
         }
 
         public override async Task<bool> UpdateItemInService(MealFoodItems item)

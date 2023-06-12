@@ -3,6 +3,7 @@ using FitApp.Views;
 using FitApp.Views.ExerciseView;
 using FitApp.Views.FoodItemView;
 using FitApp.Views.MealFoodItemView;
+using FitApp.Views.UserView;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -25,6 +26,10 @@ namespace FitApp
             Routing.RegisterRoute(nameof(NewMealFoodItemPage), typeof(NewMealFoodItemPage));
             Routing.RegisterRoute(nameof(MealFoodItemDetailsPage), typeof(MealFoodItemDetailsPage));
             Routing.RegisterRoute(nameof(MealFoodItemEditPage), typeof(MealFoodItemEditPage));
+            
+            Routing.RegisterRoute(nameof(NewUserPage), typeof(NewUserPage));
+            Routing.RegisterRoute(nameof(UserDetailsPage), typeof(UserDetailsPage));
+            Routing.RegisterRoute(nameof(UserEditPage), typeof(UserEditPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

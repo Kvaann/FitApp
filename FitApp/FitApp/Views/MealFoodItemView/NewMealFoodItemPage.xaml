@@ -4,12 +4,10 @@
              x:Class="FitApp.Views.MealFoodItemView.NewMealFoodItemPage">
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="Exercise Name" FontSize="Medium" />
-            <Entry Text="{Binding FoodItemName, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Description" FontSize="Medium" />
-            <Entry Text="{Binding FoodItemDescription, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Exercise Type" FontSize="Medium" />
-            <Editor Text="{Binding FoodItemCalories, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="Serving Size" FontSize="Medium" />
+            <Entry Text="{Binding ServingSize, Mode=TwoWay}" FontSize="Medium" />
+            <Label Text="Servings Per Meal" FontSize="Medium" />
+            <Entry Text="{Binding ServingsPerMeal, Mode=TwoWay}" FontSize="Medium" />
             <Picker Title="Food Items" 
                     ItemsSource="{Binding FoodItems}" 
                     ItemDisplayBinding="{Binding FoodItemName}" 

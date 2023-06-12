@@ -1,10 +1,12 @@
 ﻿using FitApp.Helpers;
 using FitApp.Services;
+using FitApp.Services.Abstract;
 using FitApp.ViewModels.Abstract;
 using FitAppApi;
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using Xamarin.Forms;
 
 namespace FitApp.ViewModels.MealFoodItemsViewModel
 {
@@ -12,12 +14,10 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
     {
         #region Fields
 
-        //private int mealFoodItemId;
-        private string name;
-        private string foodItemName;
+        private int foodItemiId;
         private FoodItems selectedFoodItem;
         private List<FoodItems> foodItems;
-        private string mealName;
+        private int mealId;
         private Meals selectedMeal;
         private List<Meals> meals;
         private string servingSize;
@@ -26,12 +26,6 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         #endregion
 
         #region Properties
-
-        public string Name
-        {
-            get => name;
-            set => SetProperty(ref name, value);
-        }
 
         public FoodItems SelectedFoodItem
         {
@@ -59,6 +53,18 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
             {
                 return meals;
             }
+        }
+
+        public int FoodItemiId
+        {
+            get => foodItemiId;
+            set => SetProperty(ref foodItemiId, value);
+        }
+
+        public int MealId
+        {
+            get => mealId;
+            set => SetProperty(ref mealId, value);
         }
 
         public string ServingSize
@@ -99,7 +105,7 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
 
         public override MealFoodItems SetItem()
         {
-            return new MealFoodItems()
+            var item = new MealFoodItems()
             {
                 CreationDate = DateTime.Now,
                 FoodItem = this.SelectedFoodItem,
@@ -113,11 +119,12 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
                 Title = this.Title,
                 Notes = "Taki zywot jest grubasa"
             };
+            return item;
         }
 
         public override bool ValidateSave()
         {
-            return !String.IsNullOrEmpty(name);
+            return !String.IsNullOrEmpty(ServingSize);
         }
 
         #endregion

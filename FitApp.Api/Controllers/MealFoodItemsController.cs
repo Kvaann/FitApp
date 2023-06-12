@@ -41,10 +41,11 @@ namespace FitApp.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<MealFoodItems>> GetMealFoodItems(int id)
         {
-          if (_context.MealFoodItems == null)
-          {
-              return NotFound();
-          }
+            if (_context.MealFoodItems == null)
+            {
+                return NotFound();
+            }
+
             var mealFoodItems = await _context.MealFoodItems.FindAsync(id);
 
             if (mealFoodItems == null)

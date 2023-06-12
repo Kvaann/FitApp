@@ -1,8 +1,10 @@
-﻿using FitApp.Services;
+﻿using FitApp.Helpers;
+using FitApp.Services;
 using FitApp.ViewModels.Abstract;
 using FitAppApi;
 using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace FitApp.ViewModels.MealFoodItemsViewModel
 {
@@ -11,6 +13,7 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         #region Fields
 
         //private int mealFoodItemId;
+        private string name;
         private string foodItemName;
         private FoodItems selectedFoodItem;
         private List<FoodItems> foodItems;
@@ -23,6 +26,12 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         #endregion
 
         #region Properties
+
+        public string Name
+        {
+            get => name;
+            set => SetProperty(ref name, value);
+        }
 
         public FoodItems SelectedFoodItem
         {
@@ -108,7 +117,7 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
 
         public override bool ValidateSave()
         {
-            return !String.IsNullOrEmpty(servingSize);
+            return !String.IsNullOrEmpty(name);
         }
 
         #endregion

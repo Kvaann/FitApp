@@ -62,18 +62,6 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
             }
         }
 
-        //public string SelectedFoodItemName
-        //{
-        //    get => selectedFoodItemName;
-        //    set => SetProperty(ref selectedFoodItemName, value);
-        //}
-
-        //public string SelectedMealName
-        //{
-        //    get => selectedMealName;
-        //    set => SetProperty(ref selectedMealName, value);
-        //}
-
         public string ServingSize
         {
             get => servingSize;

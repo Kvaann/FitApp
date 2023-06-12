@@ -12,13 +12,13 @@
             <Editor Text="{Binding FoodItemCalories, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <Picker Title="Food Items" 
                     ItemsSource="{Binding FoodItems}" 
-                    ItemDisplayBinding="{Binding FoodItems.FoodItemName}" 
+                    ItemDisplayBinding="{Binding FoodItemName}" 
                     SelectedItem="{Binding SelectedFoodItem}" 
                     FontSize="Medium" Margin="0" />
             <Picker Title="Meals" 
-                    ItemsSource="{Binding Meals}" 
-                    ItemDisplayBinding="{Binding Meals.MealName}" 
-                    SelectedItem="{Binding SelectedMeal}" 
+                    ItemsSource="{Binding Meals}"
+                    ItemDisplayBinding="{Binding MealName}"
+                    SelectedItem="{Binding SelectedMeal}"
                     FontSize="Medium" Margin="0" />
             <StackLayout Orientation="Horizontal">
                 <Button Text="Save" IsEnabled="true" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>

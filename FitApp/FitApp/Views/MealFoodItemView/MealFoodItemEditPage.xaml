@@ -1,12 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:mealfooditemsviewmodel="clr-namespace:FitApp.ViewModels.MealFoodItemsViewModel" 
+             x:DataType="mealfooditemsviewmodel:MealFoodItemsDetailsViewModel"
              x:Class="FitApp.Views.MealFoodItemView.MealFoodItemEditPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Serving Size" FontSize="Medium" />
+            <Entry Text="{Binding ServingSize, Mode=TwoWay}" FontSize="Medium" />
+            <Label Text="Servings Per Meal" FontSize="Medium" />
+            <Entry Text="{Binding ServingsPerMeal, Mode=TwoWay}" FontSize="Medium" />
+            <Picker Title="Food Items" 
+                    ItemsSource="{Binding FoodItems}" 
+                    ItemDisplayBinding="{Binding FoodItemName}" 
+                    SelectedItem="{Binding SelectedFoodItem}" 
+                    FontSize="Medium" Margin="0" />
+            <Picker Title="Meals" 
+                    ItemsSource="{Binding Meals}"
+                    ItemDisplayBinding="{Binding MealName}"
+                    SelectedItem="{Binding SelectedMeal}"
+                    FontSize="Medium" Margin="0" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Save" IsEnabled="true" Command="{Binding UpdateCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

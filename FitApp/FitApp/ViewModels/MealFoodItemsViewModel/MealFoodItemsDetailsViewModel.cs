@@ -101,6 +101,12 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         {
             foodItemService = new FoodItemService();
             mealsModelService = new MealsModelService();
+
+            foodItemService.RefreshListFromService();
+            foodItems = foodItemService.items;
+            mealsModelService.RefreshListFromService();
+            meals = mealsModelService.items;
+
             Items = new ObservableCollection<MealFoodItems>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             AddSinCommand = new Command(async () => await OnEditSelected(ItemId));
@@ -120,9 +126,17 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
             await ExecuteLoadItemsCommand();
         }
 
-        public override void OnUpdateAsync()
+        public override async void OnUpdateAsync()
         {
-            throw new NotImplementedException();
+            var dataStore = DependencyService.Get<MealFoodItemService>();
+            var Item = (await dataStore.GetItemsAsync(true)).Where(item => item.MealFoodItemId == ItemId).First();
+            Item.ModificationDate = DateTime.Now;
+            Item.ServingsPerMeal = this.servingsPerMeal;
+            Item.ServingSize = this.servingSize;
+            Item.FoodItemID = this.selectedFoodItem.FoodItemID;
+            Item.MealID = this.selectedMeal.MealID;
+            await DataStore.UpdateItemAsync(Item);
+            await Shell.Current.GoToAsync("..");
         }
 
         public async Task OnEditSelected(int id)
@@ -134,7 +148,7 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
             {
                 return;
             }
-            await Shell.Current.GoToAsync($"{nameof(MealFoodItemEditPage)}?{nameof(MealFoodItemsDetailsViewModel.ItemId)}={item.FoodItemID}");
+            await Shell.Current.GoToAsync($"{nameof(MealFoodItemEditPage)}?{nameof(MealFoodItemsDetailsViewModel.ItemId)}={item.MealFoodItemId}");
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -144,7 +158,7 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
             {
                 Items.Clear();
                 var dataStore = DependencyService.Get<MealFoodItemService>();
-                var items = (await dataStore.GetItemsAsync(true)).Where(item2 => item2.FoodItemID == MealFoodItemId);
+                var items = (await dataStore.GetItemsAsync(true)).Where(item2 => item2.MealFoodItemId == this.MealFoodItemId);
                 foreach (var item in items)
                 {
                     Items.Add(item);

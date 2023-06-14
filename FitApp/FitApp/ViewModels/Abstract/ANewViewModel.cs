@@ -1,5 +1,6 @@
 ﻿using FitApp.Services.Abstract;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace FitApp.ViewModels.Abstract

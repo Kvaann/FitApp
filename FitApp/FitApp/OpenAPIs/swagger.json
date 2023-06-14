@@ -1620,7 +1620,8 @@
             "nullable": true
           },
           "foodItem": {
-            "$ref": "#/components/schemas/FoodItems"
+            "$ref": "#/components/schemas/FoodItems",
+            "nullable": true
           },
           "mealID": {
             "type": "integer",
@@ -1628,7 +1629,8 @@
             "nullable": true
           },
           "meal": {
-            "$ref": "#/components/schemas/Meals"
+            "$ref": "#/components/schemas/Meals",
+            "nullable": true
           },
           "servingSize": {
             "type": "string",

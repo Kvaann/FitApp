@@ -92,10 +92,10 @@ namespace FitApp.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<MealFoodItems>> PostMealFoodItems(MealFoodItems mealFoodItems)
         {
-          if (_context.MealFoodItems == null)
-          {
-              return Problem("Entity set 'DatabaseContext.MealFoodItems'  is null.");
-          }
+              if (_context.MealFoodItems == null)
+              {
+                  return Problem("Entity set 'DatabaseContext.MealFoodItems'  is null.");
+              }
             _context.MealFoodItems.Add(mealFoodItems);
             await _context.SaveChangesAsync();
 

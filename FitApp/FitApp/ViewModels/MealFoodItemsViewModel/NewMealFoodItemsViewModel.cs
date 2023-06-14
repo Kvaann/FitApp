@@ -1,12 +1,9 @@
 ﻿using FitApp.Helpers;
 using FitApp.Services;
-using FitApp.Services.Abstract;
 using FitApp.ViewModels.Abstract;
 using FitAppApi;
 using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
-using Xamarin.Forms;
 
 namespace FitApp.ViewModels.MealFoodItemsViewModel
 {
@@ -22,6 +19,8 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         private List<Meals> meals;
         private string servingSize;
         private string servingsPerMeal;
+        private FoodItemService foodItemService;
+        private MealsModelService mealsModelService;
 
         #endregion
 
@@ -30,7 +29,11 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         public FoodItems SelectedFoodItem
         {
             get => selectedFoodItem;
-            set => SetProperty(ref selectedFoodItem, value);
+            set 
+            { 
+                SetProperty(ref selectedFoodItem, value);
+                OnPropertyChanged(nameof(SelectedFoodItem));
+            }
         }
 
         public List<FoodItems> FoodItems
@@ -44,7 +47,11 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         public Meals SelectedMeal
         {
             get => selectedMeal;
-            set => SetProperty(ref selectedMeal, value);
+            set 
+            { 
+                SetProperty(ref selectedMeal, value); 
+                OnPropertyChanged(nameof(SelectedMeal));
+            }
         }
 
         public List<Meals> Meals
@@ -88,14 +95,14 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         {
             selectedFoodItem = new FoodItems();
             selectedMeal = new Meals();
+            foodItemService = new FoodItemService();
+            mealsModelService = new MealsModelService();
 
-            var foodItemDataStorage = new FoodItemService();
-            foodItemDataStorage.RefreshListFromService();
-            foodItems = foodItemDataStorage.items;
+            foodItemService.RefreshListFromService();
+            foodItems = foodItemService.items;
 
-            var mealDataStorage = new MealsModelService();
-            mealDataStorage.RefreshListFromService();
-            meals = mealDataStorage.items;
+            mealsModelService.RefreshListFromService();
+            meals = mealsModelService.items;
 
         }
 
@@ -108,17 +115,15 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
             var item = new MealFoodItems()
             {
                 CreationDate = DateTime.Now,
-                FoodItem = this.SelectedFoodItem,
                 FoodItemID = this.SelectedFoodItem.FoodItemID,
                 IsActive = true,
-                Meal = this.SelectedMeal,
                 MealID = this.SelectedMeal.MealID,
                 ModificationDate = DateTime.Now,
                 ServingsPerMeal = this.ServingsPerMeal,
                 ServingSize = this.ServingSize,
                 Title = this.Title,
                 Notes = "Taki zywot jest grubasa"
-            };
+            }.CopyProperties(this);
             return item;
         }
 

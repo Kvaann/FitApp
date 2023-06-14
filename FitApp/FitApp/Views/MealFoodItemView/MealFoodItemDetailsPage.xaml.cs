@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FitApp.ViewModels.FoodItemsViewModel;
+using FitApp.ViewModels.MealFoodItemsViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,7 @@ namespace FitApp.Views.MealFoodItemView
         public MealFoodItemDetailsPage()
         {
             InitializeComponent();
+            BindingContext = new MealFoodItemsDetailsViewModel();
         }
     }
 }

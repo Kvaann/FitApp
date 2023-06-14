@@ -26,6 +26,8 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         private List<Meals> meals;
         private string servingSize;
         private string servingsPerMeal;
+        private FoodItemService foodItemService;
+        private MealsModelService mealsModelService;
 
         #endregion
 
@@ -68,6 +70,18 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
             set => SetProperty(ref servingSize, value);
         }
 
+        public string SelectedFoodItemName
+        {
+            get => selectedFoodItemName;
+            set => SetProperty(ref selectedFoodItemName, value);
+        }
+
+        public string SelectedMealName
+        {
+            get => selectedMealName;
+            set => SetProperty(ref selectedMealName, value);
+        }
+
         public string ServingsPerMeal
         {
             get => servingsPerMeal;
@@ -85,6 +99,8 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
         public MealFoodItemsDetailsViewModel()
             : base()
         {
+            foodItemService = new FoodItemService();
+            mealsModelService = new MealsModelService();
             Items = new ObservableCollection<MealFoodItems>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             AddSinCommand = new Command(async () => await OnEditSelected(ItemId));
@@ -96,6 +112,10 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
 
         public override async void LoadProperties(MealFoodItems item)
         {
+            ServingSize = item.ServingSize;
+            ServingsPerMeal = item.ServingsPerMeal;
+            SelectedMealName = (await mealsModelService.GetItemAsync(item.MealID.Value)).MealName;
+            SelectedFoodItemName = (await foodItemService.GetItemAsync(item.FoodItemID.Value)).FoodItemName;
             this.CopyProperties(item);
             await ExecuteLoadItemsCommand();
         }

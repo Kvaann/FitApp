@@ -23,7 +23,7 @@ namespace FitApp.ViewModels.MealFoodItemsViewModel
             {
                 return;
             }
-            await Shell.Current.GoToAsync($"{nameof(MealFoodItemDetailsPage)}?{nameof(MealFoodItemsDetailsViewModel.ItemId)}={item.FoodItemID}");
+            await Shell.Current.GoToAsync($"{nameof(MealFoodItemDetailsPage)}?{nameof(MealFoodItemsDetailsViewModel.ItemId)}={item.MealFoodItemId}");
         }
     }
 }
